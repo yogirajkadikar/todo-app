@@ -14,16 +14,18 @@
             </form>
         </div>
         <div>
-        <h1 style="font-size: large;">Incomplete Task</h1>
+        <h1 style="font-size: large;"></h1>
             <ul>
                 {% for todo in incomplete %}
                 <li style="font-size: 25pt">{{todo.text}}<a href="{{url_for('complete', id=todo.id)}}">  Done</a></li>
+                
                 {% endfor%}
             </ul>
-        <h2 style="font-size: large;">Completed Task</h2>
+        <h2 style="font-size: large;">************</h2>
             <ul>
                 {%for todo in complete%}
-                <li style="font-size: 25pt">{{todo.text}}</li>
+                <li style="font-size: 25pt"><strike>{{todo.text}}</strike><a href="{{url_for('delete', id=todo.id)}}">  Delete</a></li>
+               
                 {%endfor%}
             </ul>    
         </div>
