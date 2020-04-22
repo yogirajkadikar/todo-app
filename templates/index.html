@@ -5,20 +5,27 @@
         <title>Todo App</title>
 
     </head>
-    <body>
+    <body style="background-color: grey;">
         <h1>Todo List</h1>
         <div>Add a new task todo: 
-            <form action="/add" method="POST" >
-                <input type="text" name="todoitem"> 
-                <input type="submit"> 
+            <form action="{{url_for('add')}}" method="POST" >
+                <input type="text" name="todoitem" placeholder="Enter a task TODO"> 
+                <input type="submit" value="Add Item" style="background-color: darkorange;"> 
             </form>
         </div>
         <div>
+        <h1 style="font-size: large;">Incomplete Task</h1>
             <ul>
-                <li style="font-size: 25pt"><input type="checkbox">Some text</li>
-                <li style="font-size: 25pt"><input type="checkbox">Some text</li>
-                <li style="font-size: 25pt"><input type="checkbox">Some text</li>
+                {% for todo in incomplete %}
+                <li style="font-size: 25pt">{{todo.text}}<a href="{{url_for('complete', id=todo.id)}}">  Done</a></li>
+                {% endfor%}
             </ul>
+        <h2 style="font-size: large;">Completed Task</h2>
+            <ul>
+                {%for todo in complete%}
+                <li style="font-size: 25pt">{{todo.text}}</li>
+                {%endfor%}
+            </ul>    
         </div>
     </body>
 </html>
